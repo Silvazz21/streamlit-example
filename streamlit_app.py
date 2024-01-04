@@ -24,14 +24,14 @@ def format_results(results):
 def main():
     st.title("Combinações - Doc's Conta Corrente")
 
-    st.write("Inserir os números separados por linha. Copiar diretamente do excel para aqui.")
+    st.write("Inserir os números separados por linha.")
     
-    numbers_input = st.text_area("Inserir os números aqui (um por linha, separados por um "Enter")")
-    target_input = st.text_input("Enter the target value")
+    numbers_input = st.text_area("Inserir os números aqui (diretamente do excel, ou um por linha, separados por um Enter,)")
+    target_input = st.text_input("Valor a procurar")
 
     if st.button("Encontrar combinações"):
         if numbers_input.strip() == "" or target_input.strip() == "":
-            st.warning("Please enter numbers and a target value.")
+            st.warning("Por favor insira os números e o valor a procuar.")
         else:
             result_list = find_combinations(numbers_input, target_input)
             if result_list is not None and len(result_list) > 0:
