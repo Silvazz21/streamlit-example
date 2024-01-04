@@ -2,13 +2,16 @@ import streamlit as st
 import itertools
 
 def find_combinations(numbers, target):
-    number_list = [int(float(i) * 100) for i in numbers.split('\n')]
-    target_list = int(target * 100)
-    result = [seq for i in range(len(number_list), 0, -1)
-              for seq in itertools.combinations(number_list, i)
-              if sum(seq) == target_list]
-    result_list = [tuple(x / 100.0 for x in tpl) for tpl in result]
-    return result_list
+    try:
+        number_list = [int(float(i) * 100) for i in numbers.split('\n') if i.strip()]
+        target_list = int(target * 100)
+        result = [seq for i in range(len(number_list), 0, -1)
+                  for seq in itertools.combinations(number_list, i)
+                  if sum(seq) == target_list]
+        result_list = [tuple(x / 100.0 for x in tpl) for tpl in result]
+        return result_list
+    except ValueError:
+        return None
 
 def main():
     st.title("Find Combinations App")
@@ -23,8 +26,12 @@ def main():
             st.warning("Please enter numbers.")
         else:
             result_list = find_combinations(numbers_input, target_input)
-            st.write("Result:")
-            st.write(result_list)
+            if result_list is not None and len(result_list) > 0:
+                st.write("Result:")
+                st.write(result_list)
+            else:
+                st.warning("Error: Ensure numbers are properly formatted and target value is achievable.")
 
 if __name__ == "__main__":
     main()
+
