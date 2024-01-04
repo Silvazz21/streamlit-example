@@ -26,7 +26,7 @@ def main():
 
     st.write("Inserir os números separados por linha.")
     
-    numbers_input = st.text_area("Inserir os números aqui (diretamente do excel, ou um por linha, separados por um Enter,)")
+    numbers_input = st.text_area("Inserir os números aqui (diretamente do excel, ou um por linha, separados por um Enter)")
     target_input = st.text_input("Valor a procurar")
 
     if st.button("Encontrar combinações"):
