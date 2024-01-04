@@ -15,6 +15,12 @@ def find_combinations(numbers, target):
     except ValueError:
         return None
 
+def format_results(results):
+    formatted_results = ""
+    for combination in results:
+        formatted_results += ", ".join([f"{num:.2f}" for num in combination]) + "\n"
+    return formatted_results
+
 def main():
     st.title("Find Combinations App")
 
@@ -30,7 +36,8 @@ def main():
             result_list = find_combinations(numbers_input, target_input)
             if result_list is not None and len(result_list) > 0:
                 st.write("Result:")
-                st.write(result_list)
+                formatted_results = format_results(result_list)
+                st.text_area("Combinations", value=formatted_results, height=200)
             else:
                 st.warning("Error: Ensure numbers are properly formatted and target value is achievable.")
 
