@@ -22,14 +22,14 @@ def format_results(results):
     return formatted_results
 
 def main():
-    st.title("Find Combinations App")
+    st.title("Combinações - Doc's Conta Corrente")
 
-    st.write("Enter numbers separated by newlines and specify the target value.")
+    st.write("Inserir os números separados por linha. Copiar diretamente do excel para aqui.")
     
-    numbers_input = st.text_area("Enter numbers here (one per line)")
+    numbers_input = st.text_area("Inserir os números aqui (um por linha, separados por um "Enter")")
     target_input = st.text_input("Enter the target value")
 
-    if st.button("Find Combinations"):
+    if st.button("Encontrar combinações"):
         if numbers_input.strip() == "" or target_input.strip() == "":
             st.warning("Please enter numbers and a target value.")
         else:
@@ -37,9 +37,9 @@ def main():
             if result_list is not None and len(result_list) > 0:
                 st.write("Result:")
                 formatted_results = format_results(result_list)
-                st.text_area("Combinations", value=formatted_results, height=200)
+                st.text_area("Combinações", value=formatted_results, height=200)
             else:
-                st.warning("Error: Ensure numbers are properly formatted and target value is achievable.")
+                st.warning("Erro: Assegure que os números estão bem formatados, e que o resultado é atingível.")
 
 if __name__ == "__main__":
     main()
